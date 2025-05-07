@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Magnetic Force Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="simulation-container">
+        <canvas id="renderer-canvas"></canvas>
+    </div>
+
+    <div id="controls-panel">
+        <h2>Magnet 1</h2>
+        <label for="magnet1-shape">Shape:</label>
+        <select id="magnet1-shape">
+            <option value="disc">Disc</option>
+            <option value="block">Block</option>
+            <option value="ring">Ring</option>
+            <option value="sphere">Sphere</option>
+        </select>
+        <!-- Dimensions for Magnet 1 (dynamically shown based on shape) -->
+        <div id="magnet1-dims"></div>
+        <label for="magnet1-strength">Strength:</label>
+        <select id="magnet1-strength">
+            <!-- N-grades will be populated by JS -->
+        </select>
+        <label for="magnet1-orientation">Orientation (Euler ZYX):</label>
+        X: <input type="number" id="magnet1-rotX" value="0" step="1">
+        Y: <input type="number" id="magnet1-rotY" value="0" step="1">
+        Z: <input type="number" id="magnet1-rotZ" value="0" step="1">
+
+
+        <h2>Object 2 (Magnet or Material)</h2>
+        <label for="object2-type">Type:</label>
+        <select id="object2-type">
+            <option value="magnet">Magnet</option>
+            <option value="steel-plate">Steel Plate</option>
+            <option value="steel-ball">Steel Ball</option>
+        </select>
+        <div id="object2-config">
+            <!-- Dynamically filled based on object2-type -->
+        </div>
+        <label for="object2-orientation">Orientation (Euler ZYX):</label>
+        X: <input type="number" id="object2-rotX" value="0" step="1">
+        Y: <input type="number" id="object2-rotY" value="0" step="1">
+        Z: <input type="number" id="object2-rotZ" value="0" step="1">
+
+        <h2>Interaction</h2>
+        <label for="distance">Distance (mm):</label>
+        <input type="range" id="distance" min="1" max="200" value="50">
+        <span id="distance-value">50 mm</span>
+
+        <h2>Results</h2>
+        <p>Force: <span id="force-value">0 N</span> (<span id="force-type">Attraction/Repulsion</span>)</p>
+
+        <h2>Visualization</h2>
+        <label for="show-field-lines">Show Field Lines:</label>
+        <input type="checkbox" id="show-field-lines">
+        <button id="reset-view-btn">Reset View</button>
+        <button id="compare-config-btn">Save Config for Comparison</button>
+    </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
